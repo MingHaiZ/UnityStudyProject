@@ -23,10 +23,8 @@ public class InputManager : MonoBehaviour
         var readValue = _input.InputsTest.Player.ReadValue<Vector2>();
         if (readValue != Vector2.zero)
         {
-            if (!NetworkManager.Instance.IsHost)
-            {
-                NetworkManager.Instance.HandlerMessage(readValue);
-            }
+            NetworkManager.Instance.HandleMessage(readValue);
+            NetworkManager.Instance.BroadcastMessage(readValue);
         }
     }
 
